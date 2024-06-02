@@ -4,7 +4,7 @@
   "description": "A babel plugin that removes your colleagues' annoying console.log",
   "main": "./lib/index.js",
   "scripts": {
-    "build": "babel src --out-dir lib || true",
+    "build": "babel src/index.js --out-dir lib || true",
     "prepublishOnly": "pnpm run build",
     "test": "jest"
   },

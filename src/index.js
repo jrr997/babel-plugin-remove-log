@@ -2,20 +2,22 @@ import { execSync } from 'child_process';
 
 export default function removeLog(
   { types: t },
-  { disabledCurrentUser = false, users = [] }
+  { disabledCurrentUser = false, users = [], __test__ }
 ) {
   const reg = /author\s(.*?)\n/;
 
+  const _execSync = __test__?.execSync || execSync;
+
   function getCurrentGitUser() {
     try {
-      let user = execSync('git config user.name').toString().trim();
+      let user = _execSync('git config user.name').toString().trim();
       return user;
     } catch (e) {}
   }
 
   function getLineAuthor(filePath, lineNumber) {
     try {
-      const blameOutput = execSync(
+      const blameOutput = _execSync(
         `git blame -p -L ${lineNumber},${lineNumber} ${filePath}`
       ).toString();
       const author = blameOutput.match(reg)[1];
