@@ -12,6 +12,9 @@
     "babel",
     "plugin"
   ],
+  "files": [
+    "lib"
+  ],
   "author": "jrr997",
   "license": "MIT",
   "repository": {
